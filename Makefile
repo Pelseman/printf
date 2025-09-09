@@ -1,9 +1,16 @@
-NAME = libftprintf.a
-CFLAGS = -Wall -Wextra -Werror
-COMPILE = cc $(CFLAGS) -c
-REMOVE = rm -f
-
-SRC = $(wildcard *.c)
+NAME    = libftprintf.a
+CFLAGS  = -Wall -Wextra -Werror
+RM      = rm -f
+SRC = \
+	ft_printf.c \
+	ft_putchar.c \
+	ft_puthexl.c \
+	ft_puthexu.c \
+	ft_putnbr.c \
+	ft_putptr.c \
+	ft_putstr.c \
+	ft_putunbr.c
+	
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -11,15 +18,16 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $@ $^
 
-%.o: %.c
-	$(COMPILE) $<
+%.o: %.c ft_printf.h
+	cc $(CFLAGS) -c $< -o $@
 
 clean:
-	$(REMOVE) $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
-	$(REMOVE) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+

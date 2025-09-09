@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	writenbr(char digits[11], size_t *len, size_t i)
+static void	writenbr(char digits[10], size_t *len, size_t i)
 {
 	while (i--)
 		*len += ft_putchar(digits[i]);
